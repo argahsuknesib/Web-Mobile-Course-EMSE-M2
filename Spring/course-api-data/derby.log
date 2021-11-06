@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat Nov 06 01:04:10 CET 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-f28f-4df9-00000a9bf278 
+on database directory memory:/home/whiskygrandee/Code/Java/Web-Mobile-Course-EMSE-M2/Spring/course-api-data/7b47ee98-961a-4396-851b-0ee20374e678 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@512ddf17 
+Loaded from file:/home/whiskygrandee/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=11+28
+user.dir=/home/whiskygrandee/Code/Java/Web-Mobile-Course-EMSE-M2/Spring/course-api-data
+os.name=Linux
+os.arch=amd64
+os.version=5.11.0-38-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
