@@ -2,8 +2,12 @@ package com.emse.spring.faircorp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,29 +16,38 @@ import javax.persistence.Table;
 public class Heater {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = true)
     private Long power;
     
-    @Column(nullable = false)
-    private String room;
+    // @Column(nullable = false) 
+    /*
+    The column is commented due to the error on running the application
+        Invocation of init method failed; nested exception is org.hibernate.AnnotationException:
+        @Column(s) not allowed on a @ManyToOne property: com.emse.spring.faircorp.model.Heater.room
+    */
+
+    @ManyToOne
+    private Room room;
 
     @Column(nullable = false)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private HeaterStatus heaterStatus;
 
-    public Heater(String name, String room, HeaterStatus heaterStatus){
+    public Heater() {
+
+    }
+
+    public Heater(Long id, String name, Room room, HeaterStatus heaterStatus){
         this.name = name;
         this.room = room;
         this.heaterStatus = heaterStatus;
-    }
-
-    public Heater(){
-
+        this.id = id;
     }
 
     public Long getId() {
@@ -61,11 +74,11 @@ public class Heater {
         this.power = power;
     }
 
-    public String getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(Room room) {
         this.room = room;
     }
 
@@ -76,4 +89,7 @@ public class Heater {
     public void setHeaterStatus(HeaterStatus heaterStatus) {
         this.heaterStatus = heaterStatus;
     }
+
+    
+
 }

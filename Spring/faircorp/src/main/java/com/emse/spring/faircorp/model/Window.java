@@ -2,9 +2,13 @@ package com.emse.spring.faircorp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,26 +16,34 @@ import javax.persistence.Table;
 public class Window {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private WindowStatus windowStatus;
 
-    public Window(String name, WindowStatus windowStatus) {
-        this.windowStatus = windowStatus;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Room room;
+
+    public Window(){
+
+    }
+
+    public Window(String name, WindowStatus windowStatus, Room room) {
         this.name = name;
+        this.windowStatus = windowStatus;
+        this.room = room;
     }
-
+    
     public Long getId() {
-        return this.id;
+        return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,7 +51,7 @@ public class Window {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -47,8 +59,18 @@ public class Window {
         return windowStatus;
     }
 
-    public void setWindowStatus(WindowStatus windowStatus){
+    public void setWindowStatus(WindowStatus windowStatus) {
         this.windowStatus = windowStatus;
     }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    
 
 }

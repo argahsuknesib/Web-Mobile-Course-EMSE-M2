@@ -1,3 +1,5 @@
+/*
+
 package com.emse.spring.faircorp.JPA;
 
 import javax.persistence.Column;
@@ -89,3 +91,4 @@ public class Sensor {
 
 
 }
+*/
