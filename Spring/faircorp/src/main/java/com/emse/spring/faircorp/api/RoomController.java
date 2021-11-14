@@ -38,7 +38,7 @@ public class RoomController {
     private final BuildingDao buildingDao;
     private final HeaterDao heaterDao;
 
-    public RoomController(WindowDao windowDao, RoomDao roomDao, BuildingDao buildingDao, HeaterDao heaterDao){
+    public RoomController(WindowDao windowDao, RoomDao roomDao, BuildingDao buildingDao,HeaterDao heaterDao){
         this.windowDao = windowDao;
         this.roomDao = roomDao;
         this.buildingDao = buildingDao;
@@ -60,7 +60,7 @@ public class RoomController {
     }
 
     @ApiOperation(value = "Getting all the room with it's properties")
-    @GetMapping(path = "/{id}/building")
+    @GetMapping(path = "/{id}/allTheRoom")
     public List<RoomDto> findAllByBuildingId(@PathVariable Long id) {
         return roomDao.findRoomByBuilding(id).stream().map(RoomDto::new).collect(Collectors.toList());
     }

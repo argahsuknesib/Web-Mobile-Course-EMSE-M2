@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,16 +31,16 @@ public class Room {
 
     @Column(nullable = true)
     private Double targetTemperature;
-
-
-    // it could be one to many as one room can have many heaters
-    // and one room can also have many windows.
+    
+    @ManyToOne
+    private Building building;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
     private List<Heater> listHeater;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")   
     private List<Window> listWindow;
+
 
     public Room() {
 

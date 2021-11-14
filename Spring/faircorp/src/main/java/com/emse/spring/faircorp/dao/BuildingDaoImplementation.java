@@ -1,3 +1,4 @@
+
 package com.emse.spring.faircorp.dao;
 
 import javax.persistence.EntityManager;
