@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import com.emse.spring.faircorp.model.Room;
 
-public class RoomDaoImplementation implements RoomDaoCustom {
+public class RoomDaoCustomImpl implements RoomDaoCustom {
     
     @PersistenceContext
     private EntityManager entityManager;

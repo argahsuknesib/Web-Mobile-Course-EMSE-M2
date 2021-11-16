@@ -2,6 +2,7 @@ package com.emse.spring.faircorp.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +31,7 @@ public class Building {
     @Column(nullable = true)
     private Double temperature;
 
-    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY, cascade= CascadeType.ALL)
     private List<Room> rooms;
 
     public Building() {

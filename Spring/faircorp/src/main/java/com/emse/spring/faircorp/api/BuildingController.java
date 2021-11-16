@@ -48,7 +48,7 @@ public class BuildingController {
     private final HeaterDao heaterDao;
 
 
-    private BuildingController(WindowDao windowDao, RoomDao roomDao, BuildingDao buildingDao, HeaterDao heaterDao){
+    BuildingController(WindowDao windowDao, RoomDao roomDao, BuildingDao buildingDao, HeaterDao heaterDao){
         this.windowDao = windowDao;
         this.roomDao = roomDao;
         this.buildingDao = buildingDao;

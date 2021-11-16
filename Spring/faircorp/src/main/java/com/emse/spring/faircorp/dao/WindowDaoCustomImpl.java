@@ -8,14 +8,14 @@ import javax.persistence.PersistenceContext;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 
-public class WindowDaoImplementation implements WindowDaoCustom {
+public class WindowDaoCustomImpl implements WindowDaoCustom {
     
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<Window> findRoomOpenWindows(Long id) {
-        String randomQuery = "select w from Window w WHERE w.room.id = :id and w.windowStatus= :status";
+        String randomQuery = "select w from Window w WHERE w.room.id = :id AND w.windowStatus= :status";
         return entityManager.createQuery(randomQuery, Window.class).setParameter("id", id).setParameter("status", WindowStatus.OPEN).getResultList();
     }
 

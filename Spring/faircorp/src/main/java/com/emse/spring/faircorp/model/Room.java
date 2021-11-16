@@ -2,6 +2,7 @@ package com.emse.spring.faircorp.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -35,10 +36,10 @@ public class Room {
     @ManyToOne
     private Building building;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade= CascadeType.ALL)
     private List<Heater> listHeater;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")   
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade= CascadeType.ALL)   
     private List<Window> listWindow;
 
 

@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
 
-public class HeaterDaoImplementation implements HeaterDaoCustom {
+public class HeaterDaoCustomImpl implements HeaterDaoCustom {
 
     @PersistenceContext
     private EntityManager entityManager;

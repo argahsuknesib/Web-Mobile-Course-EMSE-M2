@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 
 import com.emse.spring.faircorp.model.Building;
 
-public class BuildingDaoImplementation implements BuildingDaoCustom {
+public class BuildingDaoCustomImpl implements BuildingDaoCustom {
     @PersistenceContext
     private EntityManager entityManager;
 
