@@ -12,7 +12,10 @@ import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
 import com.emse.spring.faircorp.model.Room;
+import com.emse.spring.faircorp.model.Window;
+import com.emse.spring.faircorp.model.WindowStatus;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,17 +29,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/building")
 @CrossOrigin
 @Transactional
 public class BuildingController {
+    @Autowired
     private final WindowDao windowDao;
+    @Autowired
     private final RoomDao roomDao;
+    @Autowired
     private final BuildingDao buildingDao;
+    @Autowired
     private final HeaterDao heaterDao;
+
 
     private BuildingController(WindowDao windowDao, RoomDao roomDao, BuildingDao buildingDao, HeaterDao heaterDao){
         this.windowDao = windowDao;
@@ -64,6 +74,20 @@ public class BuildingController {
     public ResponseEntity deleteById(@PathVariable Long id) {
         buildingDao.deleteById(id);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @ApiOperation("Change the all the status of window to either open/off")
+    @PutMapping("/{id}/changeAllWindowStatus")
+    public ResponseEntity changeAllWindowStatus(@PathVariable Long id, @PathVariable("status") Integer status) {
+        Building building = buildingDao.findById(id).orElse(null);
+        if (building == null) {return new ResponseEntity("404 - Not Found", HttpStatus.NOT_FOUND);}
+        List<Room> rooms = roomDao.findRoomByBuilding(building.getId());
+        if(rooms.size()<1)
+            return new ResponseEntity("BUILDING HAS NO ROOM",HttpStatus.NOT_FOUND);
+        rooms.forEach(r->{List<Window> windows = windowDao.findWindowsByRoom(r.getId());
+            windows.forEach(w->{w.setWindowStatus(status == 0 ? WindowStatus.CLOSED: WindowStatus.OPEN);});
+        });
+        return new ResponseEntity(new BuildingDto(building),HttpStatus.OK);
     }
 
     @ApiOperation("Change all the heater status in the building")

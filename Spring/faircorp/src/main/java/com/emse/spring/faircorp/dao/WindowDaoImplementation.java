@@ -10,13 +10,12 @@ import com.emse.spring.faircorp.model.WindowStatus;
 
 public class WindowDaoImplementation implements WindowDaoCustom {
     
-    
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<Window> findRoomOpenWindows(Long id) {
-        String randomQuery = "select w from Window w where w.room.id = :id and w.windowStatus = :status";
+        String randomQuery = "select w from Window w WHERE w.room.id = :id and w.windowStatus= :status";
         return entityManager.createQuery(randomQuery, Window.class).setParameter("id", id).setParameter("status", WindowStatus.OPEN).getResultList();
     }
 
@@ -25,6 +24,14 @@ public class WindowDaoImplementation implements WindowDaoCustom {
         String randomQuery = "select w from Window w" +  " JOIN Room r ON r.id = w.room.id" + " WHERE r.id = :id " ;
         return entityManager.createQuery(randomQuery, Window.class).setParameter("id", roomId).getResultList();
     }
+ 
+    @Override
+    public List<Window> findWindowsByBuilding(Long buildingId) {
+        String randomQuery = "select w from Window w " + " JOIN Room r ON r.id = w.room.id" + " JOIN Building b ON b.id = r.building.id" +  " WHERE b.id = :id " ;
+        return entityManager.createQuery(randomQuery, Window.class).setParameter("id", buildingId).getResultList();
+        // return null;
+    }
+   
 
     
 }

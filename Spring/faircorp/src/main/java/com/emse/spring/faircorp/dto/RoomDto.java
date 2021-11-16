@@ -155,3 +155,17 @@ public class RoomDto {
         return window.size();
     }
 }
+
+
+
+
+
+// private Integer setOnHeater(Room room){
+//     List<Heater> heater= room.getListHeater().stream().filter(p -> p.getHeaterStatus().equals(HeaterStatus.ON)).collect(Collectors.toList());
+//     return heater.size();
+// }
+
+// private Integer setOpenWindow(Room room){
+//     List<Window> window= room.getListWindow().stream().filter(p -> p.getWindowStatus().equals(WindowStatus.OPEN)).collect(Collectors.toList());
+//     return window.size();
+// }

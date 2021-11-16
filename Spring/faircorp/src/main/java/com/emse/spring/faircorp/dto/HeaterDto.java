@@ -91,4 +91,5 @@ public class HeaterDto {
     public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
+
 }

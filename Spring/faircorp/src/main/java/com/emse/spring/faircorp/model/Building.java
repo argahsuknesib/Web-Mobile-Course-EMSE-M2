@@ -10,13 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "BUILDING")
+@Table(name = "BUILDING", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "name")
+})
 public class Building {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMP_SEQ")
     private Long id;
 
     @Column(nullable = false)
@@ -30,6 +35,13 @@ public class Building {
 
     public Building() {
 
+    }
+
+    public Building(Long id, String name, Double temperature, List<Room> rooms) {
+        this.id = id;
+        this.name = name;
+        this.temperature = temperature;
+        this.rooms = rooms;
     }
 
     public Building(String name, Double temperature) {

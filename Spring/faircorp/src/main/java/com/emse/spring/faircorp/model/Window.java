@@ -33,14 +33,19 @@ public class Window {
 
     }
 
-    public Window(String name, WindowStatus windowStatus, Room room) {
+    public Window(String name, WindowStatus status, Room room) {
         this.name = name;
-        this.windowStatus = windowStatus;
+        this.windowStatus = status;
         this.room = room;
     }
 
     public Window(Room room, String name, WindowStatus status) {
         this.room  =room;
+        this.windowStatus = status;
+        this.name = name;
+    }
+
+    public Window(String name, WindowStatus status) {
         this.windowStatus = status;
         this.name = name;
     }

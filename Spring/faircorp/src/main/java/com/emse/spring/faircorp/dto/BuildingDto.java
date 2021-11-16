@@ -7,6 +7,7 @@ import com.emse.spring.faircorp.model.Building;
 
 public class BuildingDto {
     
+
     private Long id;
     private String name;
     private double temperature;
@@ -57,5 +58,4 @@ public class BuildingDto {
         this.rooms = rooms;
     }
 
-    
 }
